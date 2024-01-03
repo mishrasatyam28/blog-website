@@ -53,8 +53,8 @@ export class AuthService {
 
   // Logout
   async logout() {
-    await this.account.deleteSessions();
     try {
+      await this.account.deleteSessions();
     } catch (error) {
       console.log("Appwrite service :: get currentUser:: error", error);
     }
