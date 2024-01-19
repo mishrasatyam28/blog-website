@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, PostForm as addPostComponent } from "../components";
+import { Container, PostForm } from "../components";
 
 function AddPost() {
   return (
     <div className="py-8">
       <Container>
-        <addPostComponent />
+        <PostForm />
       </Container>
     </div>
   );
