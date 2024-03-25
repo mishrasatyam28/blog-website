@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import authService from "../appwrite/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
-import { Button, Input, Logo } from "./index";
+import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
@@ -18,9 +18,7 @@ function SignUp() {
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
-        if (userData) {
-          dispatch(login(userData));
-        }
+        if (userData) dispatch(login(userData));
         navigate("/");
       }
     } catch (error) {
@@ -61,10 +59,10 @@ function SignUp() {
                 required: true,
               })}
             />
-
             <Input
               label="Email: "
               placeholder="Enter your email"
+              type="email"
               {...register("email", {
                 required: true,
                 validate: {
@@ -74,13 +72,14 @@ function SignUp() {
                 },
               })}
             />
-
             <Input
-              label="Password"
+              label="Password: "
+              type="password"
               placeholder="Enter your password"
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: true,
+              })}
             />
-
             <Button type="submit" className="w-full">
               Create Account
             </Button>

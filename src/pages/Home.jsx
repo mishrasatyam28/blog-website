@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from "react";
-import appwriteServices from "../appwrite/config";
+import appwriteService from "../appwrite/config";
 import { Content, PostCard } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    appwriteServices.getPosts().then((post) => {
-      if (post) {
-        setPosts(post);
+    appwriteService.getPosts().then((posts) => {
+      if (posts) {
+        setPosts(posts.documents);
       }
     });
-  }, [posts]);
+  }, []);
 
   if (posts.length === 0) {
     return (
-      <Content>
-        <div className="flex flex-wrap">
-          <div className="p-2 w-full">
-            <h1 className="text-2xl font-bold hover:text-gray-500">
-              Login to read posts
-            </h1>
+      <div className="w-full py-8 mt-4 text-center">
+        <Content>
+          <div className="flex flex-wrap">
+            <div className="p-2 w-full">
+              <h1 className="text-2xl font-bold hover:text-gray-500">
+                Login to read posts
+              </h1>
+            </div>
           </div>
-        </div>
-      </Content>
+        </Content>
+      </div>
     );
   }
-
   return (
     <div className="w-full py-8">
       <Content>

@@ -1,12 +1,12 @@
 import React from "react";
 
-function Button({
+export default function Button({
   children,
   type = "button",
   bgColor = "bg-blue-600",
   textColor = "text-white",
   className = "",
-  ...props //any extra property like placehoolder
+  ...props
 }) {
   return (
     <button
@@ -17,5 +17,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;
